@@ -1,5 +1,6 @@
-const Cors = require('cors');
-const initMiddleware = require('../../../lib/init-middleware');
+import Cors from 'cors';
+
+import initMiddleware from '../../../lib/init-middleware'
 
 const cors = initMiddleware(
   Cors({
