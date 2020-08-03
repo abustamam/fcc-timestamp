@@ -15,7 +15,13 @@ export default async (req, res) => {
   const {
     query: { date_string },
   } = req;
-  const date = date_string ? new Date(date_string) : new Date();
+  if (/\d{5,}/.test(date_string)) {
+    return res.json({
+      unix: date_string,
+      utc: new Date(parseInt(date_string)).toUTCString(),
+    });
+  }
+  const date = new Date(date_string);
   if (!isValidDate(date)) {
     res.json({ error: 'Invalid Date' });
   } else {
